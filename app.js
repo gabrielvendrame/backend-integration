@@ -7,6 +7,7 @@ const app = express();
 
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
+const videoRoutes = require('./routes/video');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,5 +30,6 @@ app.use((req, res, next) => {
 
 app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/video', videoRoutes)
 
 module.exports = app;
