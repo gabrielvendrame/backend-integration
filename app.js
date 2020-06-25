@@ -7,11 +7,15 @@ const app = express();
 
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
-const videoRoutes = require('./routes/video');
+const streamRoutes = require('./routes/stream');
+const uploadRoutes = require('./routes/upload');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/images', express.static(path.join('./images')));
+app.use('/assets/images', express.static(path.join('./assets/images')));
+// app.use('/assets/video', express.static(path.join('./assets/video')));
+app.use('/assets/audio', express.static(path.join('./assets/audio')));
+app.use('/assets/waveforms', express.static(path.join('./assets/waveforms')));
 
 mongoose.connect('mongodb+srv://gabeame:' + process.env.MONGO_ATLAS_PW + '@cluster0-oh8uv.mongodb.net/node-api?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
@@ -30,6 +34,7 @@ app.use((req, res, next) => {
 
 app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/video', videoRoutes);
+app.use('/api/stream', streamRoutes);
+app.use('/api/upload', uploadRoutes);
 
 module.exports = app;
