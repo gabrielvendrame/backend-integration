@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 
@@ -22,7 +23,7 @@ mongoose.connect('mongodb+srv://gabeame:' + process.env.MONGO_ATLAS_PW + '@clust
         console.log('Successfully connected to the database');
     })
     .catch(() => {
-        console.log('Error connecting to the database');
+        console.log('Error connecting to the database, usually is because mongodb atlas sucks');
     });
 
 app.use((req, res, next) => {
